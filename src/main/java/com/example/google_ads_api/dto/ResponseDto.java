@@ -6,4 +6,5 @@ import lombok.Data;
 public class ResponseDto {
     private Integer code;
     private Object data;
+    private Object error;
 }
