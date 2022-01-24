@@ -1,3 +1,4 @@
+CREATE DATABASE google_ads;
 USE google_ads;
 
 CREATE TABLE ACCOUNTS (
