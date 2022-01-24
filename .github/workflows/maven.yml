@@ -19,7 +19,7 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD:
+          MYSQL_ROOT_PASSWORD: root_pass
           MYSQL_DATABASE: google_ads
           MYSQL_USER: db_user
           MYSQL_PASSWORD: db_pass
@@ -37,6 +37,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Init DB
-      run: mysql --protocol=tcp -h localhost -P 3306 -u root -proot_password < ddl/init.sql
+      run: mysql --protocol=tcp -h localhost -P 3306 -u root -proot_pass < ddl/init.sql
     - name: Build with Maven
       run: mvn -B package --file pom.xml
