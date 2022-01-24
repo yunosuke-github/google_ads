@@ -46,7 +46,7 @@ public class CampaignServiceTests {
         campaign.setId(1L);
         when(campaignRepository.findByIdAndDeleted(campaign.getId(), Deleted.ACTIVE.getId())).thenReturn(campaign);
 
-        Campaign actual = campaignService.get(requestCampaign);
+        Campaign actual = campaignService.get(1L);
         assertThat(actual.getAccountId()).isEqualTo(1L);
     }
 }
