@@ -8,18 +8,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CampaignController {
 
     @Autowired
     CampaignService campaignService;
 
-    @RequestMapping(value = "/campaign", method = RequestMethod.POST)
-    public ResponseDto getCampaign(@RequestBody RequestCampaign requestCampaign) {
+    @RequestMapping(value = "/campaign", method = RequestMethod.GET)
+    public ResponseDto getCampaign(@RequestParam Long campaignId) {
         ResponseDto response = new ResponseDto();
-        Campaign campaign = campaignService.get(requestCampaign);
+        Campaign campaign = campaignService.get(campaignId);
         response.setData(campaign);
         response.setCode(HttpStatus.OK.value());
+        return response;
+    }
+
+    @RequestMapping(value = "/campaign/list", method = RequestMethod.GET)
+    public ResponseDto getCampaign(@RequestParam Long accountId, @RequestParam List<Long> campaignIds) {
+        ResponseDto response = new ResponseDto();
+        List<Campaign> campaigns = campaignService.getList(accountId, campaignIds);
+        response.setData(campaigns);
+        response.setCode(HttpStatus.OK.value());
+        return response;
+    }
+
+    @RequestMapping(value = "/campaign/add", method = RequestMethod.POST)
+    public ResponseDto addCampaign(@RequestBody RequestCampaign requestCampaign) {
+        ResponseDto response = new ResponseDto();
         return response;
     }
 
