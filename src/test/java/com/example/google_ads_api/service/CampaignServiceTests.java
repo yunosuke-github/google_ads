@@ -48,6 +48,5 @@ public class CampaignServiceTests {
 
         Campaign actual = campaignService.get(1L);
         assertThat(actual.getAccountId()).isEqualTo(1L);
-        assertThat(true).isFalse();
     }
 }
