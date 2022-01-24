@@ -1,0 +1,3 @@
+# google_ads
+
+GoogleAdsAPIを想像で模倣しながら開発を学ぶRepository...
