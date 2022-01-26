@@ -1,5 +1,8 @@
 package com.example.google_ads_api.domain.master;
 
+import com.example.google_ads_api.consts.Deleted;
+import com.example.google_ads_api.dto.requests.RequestCampaign;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,13 +18,46 @@ public class Campaign implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
     private Long accountId;
+
     private String name;
-    private String type;
+
+    private Integer type;
+
     private Long budget;
+
     private Integer status;
+
     private Integer deleted;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date createdAt;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date updatedAt;
+
+    /**
+     * Request内容をエンティティにマッピング
+     *
+     * @param request
+     * @return
+     */
+    public static Campaign requestMapper(RequestCampaign request) {
+        Campaign campaign = new Campaign();
+        campaign.setId(request.getCampaignId());
+        campaign.setAccountId(request.getAccountId());
+        campaign.setName(request.getName());
+        campaign.setBudget(request.getBudget());
+        campaign.setType(request.getType());
+        campaign.setStatus(request.getStatus());
+        if (campaign.getId() == null) {
+            campaign.setDeleted(Deleted.NO.getId());
+            campaign.setCreatedAt(new Date());
+        } else {
+            campaign.setUpdatedAt(new Date());
+        }
+        return campaign;
+    }
 
 }

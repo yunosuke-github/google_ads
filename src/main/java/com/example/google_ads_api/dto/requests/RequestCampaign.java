@@ -13,4 +13,12 @@ public class RequestCampaign {
 
     private List<Long> campaignIds;
 
+    private String name;
+
+    private Integer type;
+
+    private Long budget;
+
+    private Integer status;
+
 }

@@ -35,9 +35,19 @@ public class CampaignController {
     }
 
     @RequestMapping(value = "/campaign", method = RequestMethod.POST)
-    public ResponseDto addCampaign(RequestCampaign requestCampaign) {
+    public ResponseDto addCampaign(@RequestBody RequestCampaign request) {
         ResponseDto response = new ResponseDto();
-        // TODO: Add Logic
+        Campaign campaign = campaignService.save(request);
+        response.setData(campaign);
+        response.setCode(HttpStatus.CREATED.value());
+        return response;
+    }
+
+    @RequestMapping(value = "/campaign", method = RequestMethod.DELETE)
+    public ResponseDto deleteCampaign(RequestCampaign request) {
+        ResponseDto response = new ResponseDto();
+        campaignService.delete(request);
+        response.setCode(HttpStatus.CREATED.value());
         return response;
     }
 

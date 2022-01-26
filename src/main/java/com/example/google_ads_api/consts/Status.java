@@ -1,12 +1,12 @@
 package com.example.google_ads_api.consts;
 
-public enum Deleted {
-    NO(0),
-    YES(1);
+public enum Status {
+    ENABLE(1),
+    DISABLE(0);
 
     private int id;
 
-    private Deleted(int id) {
+    private Status(int id) {
         this.id = id;
     }
 
