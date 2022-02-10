@@ -25,8 +25,8 @@ public class CampaignController {
         return response;
     }
 
-    @RequestMapping(value = "/campaign/list", method = RequestMethod.GET)
-    public ResponseDto getCampaignList(RequestCampaign request) {
+    @RequestMapping(value = "/campaign/list", method = RequestMethod.POST)
+    public ResponseDto getCampaignList(@RequestBody RequestCampaign request) {
         ResponseDto response = new ResponseDto();
         List<Campaign> campaigns = campaignService.getList(request);
         response.setData(campaigns);
@@ -44,10 +44,10 @@ public class CampaignController {
     }
 
     @RequestMapping(value = "/campaign", method = RequestMethod.DELETE)
-    public ResponseDto deleteCampaign(RequestCampaign request) {
+    public ResponseDto deleteCampaign(@RequestBody RequestCampaign request) {
         ResponseDto response = new ResponseDto();
         campaignService.delete(request);
-        response.setCode(HttpStatus.CREATED.value());
+        response.setCode(HttpStatus.OK.value());
         return response;
     }
 

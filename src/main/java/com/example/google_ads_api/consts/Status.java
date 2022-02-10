@@ -1,8 +1,10 @@
 package com.example.google_ads_api.consts;
 
 public enum Status {
-    ENABLE(1),
-    DISABLE(0);
+    DISABLE(0),
+    REVIEW(1),
+    ENABLE(2)
+    ;
 
     private int id;
 

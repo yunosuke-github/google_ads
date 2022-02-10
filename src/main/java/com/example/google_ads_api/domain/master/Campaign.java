@@ -1,6 +1,7 @@
 package com.example.google_ads_api.domain.master;
 
 import com.example.google_ads_api.consts.Deleted;
+import com.example.google_ads_api.consts.Status;
 import com.example.google_ads_api.dto.requests.RequestCampaign;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -50,10 +51,10 @@ public class Campaign implements Serializable {
         campaign.setName(request.getName());
         campaign.setBudget(request.getBudget());
         campaign.setType(request.getType());
-        campaign.setStatus(request.getStatus());
         if (campaign.getId() == null) {
             campaign.setDeleted(Deleted.NO.getId());
             campaign.setCreatedAt(new Date());
+            campaign.setStatus(Status.REVIEW.getId());
         } else {
             campaign.setUpdatedAt(new Date());
         }
